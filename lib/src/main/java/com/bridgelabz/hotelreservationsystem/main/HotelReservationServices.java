@@ -11,10 +11,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public class HotelReservationServices {
-	public static int i = 0;
 	public static HashMap<String, Integer> bill = new HashMap<>();
-
-	public static void cheapestHotel(ArrayList<HotelReservationSystem> hotelList, CustomerType customerType,
+	
+	public void customerHotelRatesList(ArrayList<HotelReservationSystem> hotelList, CustomerType customerType,
 			String checkInDate, String checkOutDate) {
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("ddMMMyyyy");
 		LocalDate checkInDay = LocalDate.parse(checkInDate, format);
@@ -54,6 +53,8 @@ public class HotelReservationServices {
 				}
 			}
 		});
+	}
+	public void cheapestHotel(ArrayList<HotelReservationSystem> hotelList) {
 		int minPrice = Collections.min(bill.values());
 		for (Entry<String, Integer> mapElement : bill.entrySet()) {
 			String key = (String) mapElement.getKey();
@@ -61,12 +62,27 @@ public class HotelReservationServices {
 			if (value == minPrice) {
 				hotelList.stream().forEach(n -> {
 					if (n.getHotelName().equals(key)) {
-						System.out.println("The cheapest hotel is " + key + " with " + n.getHotelRating()
+						System.out.println("The cheapest hotel is " + n.getHotelName() + " with " + n.getHotelRating()
 								+ " star rating " + "and the price is " + minPrice + "$.");
 					}
 				});
 			}
 		}
 	}
-
+	
+	public void bestRatedHotel(ArrayList<HotelReservationSystem> hotelList) {
+		int maxPrice = Collections.max(bill.values());
+		for (Entry<String, Integer> mapElement : bill.entrySet()) {
+			String key = (String) mapElement.getKey();
+			int value = ((int) mapElement.getValue());
+			if (value == maxPrice) {
+				hotelList.stream().forEach(n -> {
+					if (n.getHotelName().equals(key)) {
+						System.out.println("The best rated hotel is " + n.getHotelName() + " and the price is " + maxPrice + "$.");
+					}
+				});
+			}
+		}
+		
+	}
 }
