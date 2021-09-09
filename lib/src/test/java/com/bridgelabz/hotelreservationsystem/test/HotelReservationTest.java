@@ -11,9 +11,12 @@ import com.bridgelabz.hotelreservationsystem.main.*;
 public class HotelReservationTest {
 	public ArrayList<HotelReservationSystem> hotelList = new ArrayList<HotelReservationSystem>();
 	public HashMap<CustomerType, Rate> customerRate = new HashMap();
+	
 
-	@Test
+	@Before
 	public void addHotel() {
+		
+		customerRate = new HashMap();
 		customerRate.put(CustomerType.REGULAR, new Rate(110, 90));
 		customerRate.put(CustomerType.REWARD, new Rate(80, 80));
 		HotelReservationSystem lakewood = new HotelReservationSystem("Lakewood", 3, customerRate);
@@ -31,5 +34,9 @@ public class HotelReservationTest {
 		hotelList.add(lakewood);
 		hotelList.add(bridgewood);
 		hotelList.add(ridgewood);
+	}
+	@Test
+	public void checkForCheapestHotel() {
+		HotelReservationServices.cheapestHotel(hotelList,CustomerType.REGULAR,"07Sep2021","08Sep2021");
 	}
 }
