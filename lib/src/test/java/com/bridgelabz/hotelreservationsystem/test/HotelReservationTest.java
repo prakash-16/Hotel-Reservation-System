@@ -37,6 +37,6 @@ public class HotelReservationTest {
 	}
 	@Test
 	public void checkForCheapestHotel() {
-		HotelReservationServices.cheapestHotel(hotelList,CustomerType.REGULAR,"07Sep2021","08Sep2021");
+		HotelReservationServices.cheapestHotel(hotelList,CustomerType.REGULAR,"11Sep2021","12Sep2021");
 	}
 }
