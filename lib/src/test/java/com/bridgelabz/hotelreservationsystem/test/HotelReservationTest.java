@@ -47,4 +47,11 @@ public class HotelReservationTest {
 		hotel.customerHotelRatesList(hotelList,CustomerType.REGULAR,"11Sep2021","12Sep2021");
 		hotel.bestRatedHotel(hotelList);
 	}
+	@Test
+	public void checkLoyaltyProgramIsTakingInput() {
+		HotelReservationServices hotel = new HotelReservationServices();
+		hotel.loyaltyProgram(hotelList,"Lakewood",80, 80);
+		hotel.loyaltyProgram(hotelList,"Bridgewood",110, 50);
+		hotel.loyaltyProgram(hotelList,"Ridgewood",100, 40);
+	}
 }
