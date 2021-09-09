@@ -82,7 +82,15 @@ public class HotelReservationServices {
 					}
 				});
 			}
-		}
-		
+		}	
+	}
+	
+	public void loyaltyProgram(ArrayList<HotelReservationSystem> hotelList, String hotelName, int weekdayRates, int weekendRates) {
+		hotelList.stream().forEach(n -> {
+			if(n.getHotelName().equals(hotelName)) {
+				n.getRate().get(CustomerType.REWARD).setWeekdayRates(weekdayRates);
+				n.getRate().get(CustomerType.REWARD).setWeekendRates(weekendRates);
+			}
+		});
 	}
 }
