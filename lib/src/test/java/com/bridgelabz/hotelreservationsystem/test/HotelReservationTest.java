@@ -73,9 +73,9 @@ public class HotelReservationTest {
 			if((checkInResult == true) && (checkOutResult == true)) {
 				format.parse(checkInDate);
 				format.parse(checkOutDate);
-				if(customerType.equals("REWARD")) {
+				if(customerType.equals("REGULAR")) {
 					HotelReservationServices hotel = new HotelReservationServices();
-					hotel.customerHotelRatesList(hotelList,CustomerType.REWARD,"11Sep2021","12Sep2021");
+					hotel.customerHotelRatesList(hotelList,CustomerType.REGULAR,"11Sep2021","12Sep2021");
 					hotel.cheapestHotel(hotelList);
 				}
 			}
