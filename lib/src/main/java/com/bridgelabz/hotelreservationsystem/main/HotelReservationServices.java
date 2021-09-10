@@ -9,6 +9,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class HotelReservationServices {
 	public static HashMap<String, Integer> bill = new HashMap<>();
@@ -92,5 +94,12 @@ public class HotelReservationServices {
 				n.getRate().get(CustomerType.REWARD).setWeekendRates(weekendRates);
 			}
 		});
+	}
+	
+	public boolean regexValidation(String date) {
+		String dateRegex = "^[0-9]{2}[A-Z]{1}[a-z]{2}[0-9]{4}$";
+		Pattern p = Pattern.compile(dateRegex);
+		Matcher m = p.matcher(date);
+		return m.matches();
 	}
 }
