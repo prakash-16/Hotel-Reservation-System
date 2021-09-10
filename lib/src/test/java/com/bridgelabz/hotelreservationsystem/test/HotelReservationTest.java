@@ -1,12 +1,15 @@
 package com.bridgelabz.hotelreservationsystem.test;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.bridgelabz.hotelreservationsystem.main.*;
+
 
 public class HotelReservationTest {
 	public ArrayList<HotelReservationSystem> hotelList = new ArrayList<HotelReservationSystem>();
@@ -47,11 +50,38 @@ public class HotelReservationTest {
 		hotel.customerHotelRatesList(hotelList,CustomerType.REGULAR,"11Sep2021","12Sep2021");
 		hotel.bestRatedHotel(hotelList);
 	}
-	@Test
+	@Before
 	public void checkLoyaltyProgramIsTakingInput() {
 		HotelReservationServices hotel = new HotelReservationServices();
-		hotel.loyaltyProgram(hotelList,"Lakewood",80, 80);
-		hotel.loyaltyProgram(hotelList,"Bridgewood",110, 50);
-		hotel.loyaltyProgram(hotelList,"Ridgewood",100, 40);
+		hotel.loyaltyProgram(hotelList,"Lakewood",80,80);
+		hotel.loyaltyProgram(hotelList,"Bridgewood",110,50);
+		hotel.loyaltyProgram(hotelList,"Ridgewood",100,40);
+	}
+	
+	@Test
+	public void checkCheapBestRatedHotel() throws FormatException {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Date format (ddMMMyyyy)");
+		System.out.println("Enter CheckIn date: ");
+		String checkInDate = sc.nextLine();
+		System.out.println("Enter CheckOut date: ");
+		String checkOutDate = sc.nextLine();
+		System.out.println("Enter type of customer: ");
+		String customerType = sc.nextLine();
+		customerType = customerType.toUpperCase();
+		try {
+			DateTimeFormatter format = DateTimeFormatter.ofPattern("ddMMMyyyy");
+			if((checkInDate.length() == 9) && checkOutDate.length() == 9) {
+				format.parse(checkInDate);
+				format.parse(checkOutDate);
+				if(customerType.equals("REWARD")) {
+					HotelReservationServices hotel = new HotelReservationServices();
+					hotel.customerHotelRatesList(hotelList,CustomerType.REWARD,"11Sep2021","12Sep2021");
+					hotel.cheapestHotel(hotelList);
+				}
+			}
+		}catch(FormatException e) {
+			throw new FormatException("Not a valid input");
+		}
 	}
 }
