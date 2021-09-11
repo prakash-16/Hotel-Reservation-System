@@ -96,10 +96,16 @@ public class HotelReservationServices {
 		});
 	}
 	
-	public boolean regexValidation(String date) {
+	public boolean regexValidation(String date) throws FormatException {
 		String dateRegex = "^[0-9]{2}[A-Z]{1}[a-z]{2}[0-9]{4}$";
 		Pattern p = Pattern.compile(dateRegex);
 		Matcher m = p.matcher(date);
-		return m.matches();
+		boolean result = m.matches();
+		if(result == true) {
+			return true;
+		}
+		else {
+			throw new FormatException("Not a valid input");
+		}
 	}
 }
