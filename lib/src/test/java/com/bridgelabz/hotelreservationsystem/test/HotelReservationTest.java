@@ -55,7 +55,7 @@ public class HotelReservationTest {
 		hotel.loyaltyProgram(hotelList,"Ridgewood",100,40);
 	}
 	
-//	@Test
+	@Test
 	public void checkCheapBestRatedHotel() throws FormatException {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Date format (ddMMMyyyy)");
@@ -68,7 +68,7 @@ public class HotelReservationTest {
 		customerType = customerType.toUpperCase();
 		try {
 			DateTimeFormatter format = DateTimeFormatter.ofPattern("ddMMMyyyy");
-			boolean checkInResult = hotel.regexValidation(checkInDate);
+			boolean checkInResult = hotel.regexValidation(checkInDate); 
 			boolean checkOutResult = hotel.regexValidation(checkOutDate);
 			if((checkInResult == true) && (checkOutResult == true)) {
 				format.parse(checkInDate);
@@ -80,7 +80,7 @@ public class HotelReservationTest {
 				}
 			}
 		}catch(FormatException e) {
-			throw new FormatException("Not a valid input");
+			throw new FormatException();
 		}
 	}
 	
